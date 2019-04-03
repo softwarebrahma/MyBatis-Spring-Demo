@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2010-2016 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+
+	
+   <!-- Postgresql datasource -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${db.driverClassName}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<property name="removeAbandonedOnBorrow" value="true"/>
+		<property name="initialSize" value="10" />
+		<property name="maxTotal" value="20" />
+		<property name="maxIdle" value="5" />
+		<property name="minIdle" value="0" />
+		<property name="maxWaitMillis" value="90000" />
+		<property name="minEvictableIdleTimeMillis" value="900000" />
+		<property name="softMinEvictableIdleTimeMillis" value="900000" />
+		<property name="validationQuery" value="select 1" />
+		<property name="validationQueryTimeout" value="90" />
+		<property name="defaultTransactionIsolation" value="1" />
+    </bean>
+
+    <!-- For transaction manager, using DataSourceTransactionManager" since we are using JDBC local tx -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+		<property name="defaultTimeout" value="300" />
+    </bean>
+
+    <!-- No need to enable component scanning & autowire as we are using spring boot application component scan feature which will take care (mapper scanning done separately) -->    
+    <!-- <context:component-scan base-package="org.mybatis.jpetstore.service" /> -->
+
+    <!-- enable transaction demarcation with annotations -->
+    <tx:annotation-driven />
+
+    <!-- define the SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:com/brocade/dcm/domain/**/*.xml" />
+        <property name="typeAliasesPackage" value="com.brocade.dcm.domain.model" />
+    </bean>
+
+    <!-- scan for mappers to let them be autowired. This is needed as spring boot component scan feature does not find MyBatis mappers (not a plain bean so spring would not know how to instantiate it) -->
+    <mybatis:scan base-package="com.brocade.dcm.domain.mapper" />
+</beans>

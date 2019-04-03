@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+<classPathEntry location="./lib/postgresql.jar"/>
+  <context id="context1">
+  	<!--  <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+    	<property name="targetProject" value="src/main/java"/>
+    	<property name="targetPackage" value="com.brocade.dcm.mapper"/>
+    </plugin> -->
+    <jdbcConnection connectionURL="jdbc:postgresql://10.30.3.24:5432/postgres" driverClass="org.postgresql.Driver" password="passw0rd" userId="dcmadmin" />
+    <javaModelGenerator targetPackage="com.brocade.dcm.domain.model" targetProject="src/main/java" />
+    <sqlMapGenerator targetPackage="com.brocade.dcm.domain.xml" targetProject="src/main/java" />
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.brocade.dcm.domain.mapper" targetProject="src/main/java" />
+	<table schema="public" tableName="posts" />
+	<table schema="public" tableName="dept" />
+	<table schema="public" tableName="emp" />
+  </context>
+</generatorConfiguration>
