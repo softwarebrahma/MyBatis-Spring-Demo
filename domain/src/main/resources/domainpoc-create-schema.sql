@@ -28,7 +28,7 @@ WITH (
 ALTER TABLE public.posts
   OWNER TO dcmadmin;
 GRANT ALL ON TABLE public.posts TO dcmadmin;
-GRANT SELECT ON TABLE public.posts TO postgres;
+GRANT SELECT ON TABLE public.posts TO public;
 
 -- Index: posts_id_uindex
 
@@ -58,7 +58,7 @@ WITH (
 ALTER TABLE public.dept
   OWNER TO dcmadmin;
 GRANT ALL ON TABLE public.dept TO dcmadmin;
-GRANT SELECT ON TABLE public.dept TO postgres;
+GRANT SELECT ON TABLE public.dept TO public;
 
   
 
@@ -87,7 +87,7 @@ WITH (
 ALTER TABLE public.emp
   OWNER TO dcmadmin;
 GRANT ALL ON TABLE public.emp TO dcmadmin;
-GRANT SELECT ON TABLE public.emp TO postgres;
+GRANT SELECT ON TABLE public.emp TO public;
 
 -- Index: ename_idx
 
