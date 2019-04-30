@@ -46,7 +46,7 @@
                     <!-- Uncomment static IP finder to enable static-based discovery of initial nodes. -->
                     <!--<bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">-->
                     <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder">
-                        <property name="multicastGroup" value="224.1.2.3"/>
+                        <property name="multicastGroup" value="224.1.4.3"/>
                     </bean>
                 </property>
             </bean>

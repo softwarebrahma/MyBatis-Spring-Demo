@@ -93,4 +93,10 @@ public interface DeptMapper {
      * @mbg.generated Tue May 23 21:55:33 PDT 2017
      */
     int updateByPrimaryKey(Dept record);
+    
+    /**
+     * @return
+     * MyBatis illustration 1
+     */
+    List<Dept> selectDepts();
 }

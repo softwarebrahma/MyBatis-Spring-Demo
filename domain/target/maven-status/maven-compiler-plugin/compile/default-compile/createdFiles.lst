@@ -4,6 +4,7 @@ com\brocade\dcm\domain\model\EmpExample$Criterion.class
 com\brocade\dcm\domain\model\EmpExample$Criteria.class
 com\brocade\dcm\domain\model\DeptExample$GeneratedCriteria.class
 com\brocade\dcm\domain\model\EmpExample$GeneratedCriteria.class
+com\brocade\dcm\domain\model\EmpInfo.class
 com\brocade\dcm\domain\criteria\PortsSearchCriteria.class
 com\brocade\dcm\domain\mapper\PostsMapper.class
 com\brocade\dcm\domain\mapper\EmpMapper.class

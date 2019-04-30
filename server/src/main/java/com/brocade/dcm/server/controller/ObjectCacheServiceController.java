@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.brocade.dcm.domain.model.Dept;
 import com.brocade.dcm.domain.model.Emp;
+import com.brocade.dcm.domain.model.EmpInfo;
 import com.brocade.dcm.domain.model.Posts;
 import com.brocade.dcm.server.service.ObjectCacheLookupService;
 import com.brocade.dcm.server.service.ObjectCacheService;
@@ -89,6 +90,16 @@ public class ObjectCacheServiceController {
 	public ResponseEntity<Integer> putDept(@RequestBody Dept dept) {
 		try {
 			return new ResponseEntity<>(objectCacheService.putDeptOuter(dept), HttpStatus.OK);
+		} catch(Exception e) {
+			System.out.println("Caught : " + e.getMessage());
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping("/dcm/empinfos")
+	public ResponseEntity<List<EmpInfo>> getEmpInfos() {
+		try {
+			return new ResponseEntity<>(objectCacheService.getEmpInfos(), HttpStatus.OK);
 		} catch(Exception e) {
 			System.out.println("Caught : " + e.getMessage());
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -16,6 +16,8 @@ import org.apache.ignite.cache.query.ScanQuery;
 import org.apache.ignite.lang.IgniteBiPredicate;
 import org.apache.ignite.mxbean.CacheMetricsMXBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import com.brocade.dcm.domain.model.Dept;
@@ -28,9 +30,11 @@ public class ObjectCacheLookupService {
 	
 	private IgniteCache deptMapperCache;
 	
-	@PostConstruct
-	public void setupViewCache() {
-		System.out.println("*******************TESTING******************* : " + ignite.name());
+//	@PostConstruct
+	@EventListener
+	public void handleContextRefresh(final ContextRefreshedEvent event) {
+	//public void setupViewCache() {
+		/*System.out.println("*******************TESTING******************* : " + ignite.name());
 		deptMapperCache = ignite.cache("com.brocade.dcm.domain.mapper.DeptMapper");
 		CacheMetricsMXBean cacheMetricsMXBean = deptMapperCache.localMxBean();
 		CacheMetrics cacheMetrics = deptMapperCache.localMetrics();
@@ -60,7 +64,7 @@ public class ObjectCacheLookupService {
                 }
             }
         });
-		deptMapperCache.query(qry);
+		deptMapperCache.query(qry);*/
 	}
 	
 	public void testCacheLookup() {

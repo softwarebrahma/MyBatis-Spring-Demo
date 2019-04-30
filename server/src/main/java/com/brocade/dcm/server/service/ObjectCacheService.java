@@ -14,6 +14,7 @@ import com.brocade.dcm.domain.mapper.EmpMapper;
 import com.brocade.dcm.domain.mapper.PostsMapper;
 import com.brocade.dcm.domain.model.Dept;
 import com.brocade.dcm.domain.model.Emp;
+import com.brocade.dcm.domain.model.EmpInfo;
 import com.brocade.dcm.domain.model.Posts;
 import com.brocade.dcm.domain.model.PostsExample;
 import com.brocade.dcm.server.common.CustomApplicationNonRunTimeException;
@@ -128,6 +129,11 @@ public class ObjectCacheService {
 		 } else {
 			 System.out.println("==== in ObjectCacheService.getDepts Getting all Depts ==== ");
 			 depts = deptMapper.selectByExample(null);
+			 //MUTHU
+			 //depts = deptMapper.selectDepts();
+			 System.out.println("TESTING 1 : " + empMapper.getEmpById(3));
+			 System.out.println("TESTING 2 : " + Arrays.deepToString(empMapper.getAllEmpInfo().toArray()));
+			 //MUTHU
 		 }
 		System.out.println("==== in ObjectCacheService.getDepts ==== returning : " + Arrays.deepToString(depts.toArray()));
 		return depts;
@@ -138,13 +144,21 @@ public class ObjectCacheService {
 		System.out.println("==== in ObjectCacheService.getEmps ==== for empNo : " + empNo);
 		List<Emp> emps = null;
 		if (!empNo.equals(-1)) {
-			emps = Arrays.asList(empMapper.selectByPrimaryKey(empNo));
+			//emps = Arrays.asList(empMapper.selectByPrimaryKey(empNo));
+			emps = Arrays.asList(empMapper.getEmpById(empNo));
 		 } else {
 			 System.out.println("==== in ObjectCacheService.getEmps Getting all Emps ==== ");
-			 emps = empMapper.selectByExample(null);
+			 //emps = empMapper.selectByExample(null);
+			 emps = empMapper.getAllEmps();
 		 }
 		System.out.println("==== in ObjectCacheService.getEmps ==== returning : " + Arrays.deepToString(emps.toArray()));
 		return emps;
+	}
+	
+	@SpectreLocalReadOnlyTransaction
+	public List<EmpInfo> getEmpInfos() {
+		System.out.println("==== in ObjectCacheService.getEmpInfos Getting all EmpInfos ==== ");
+		return empMapper.getAllEmpInfo();
 	}
 	
 	@SpectreLocalCustomReadWriteTransaction

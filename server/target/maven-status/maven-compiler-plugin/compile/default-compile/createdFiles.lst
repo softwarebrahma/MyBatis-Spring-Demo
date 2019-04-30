@@ -1,6 +1,4 @@
-com\brocade\dcm\server\service\ObjectCacheLookupService$2.class
 com\brocade\dcm\server\controller\ObjectCacheServiceController$DeptWithEmpsContext.class
-com\brocade\dcm\server\service\ObjectCacheLookupService$1.class
 com\brocade\dcm\server\service\SpectreLocalReadWriteTransaction.class
 com\brocade\dcm\server\service\ObjectCacheLookupService.class
 com\brocade\dcm\server\service\SpectreLocalCustomReadWriteTransaction.class
