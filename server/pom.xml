@@ -23,7 +23,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<ignite.version>2.4.0</ignite.version>
+		<ignite.version>2.8.1</ignite.version>
 		<mybatis-ignite.version>1.0.5</mybatis-ignite.version>
 	</properties>
 
